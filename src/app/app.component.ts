@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import {DUMMY_USERS} from "./dummy-users";
+import EventEmitter from "node:events";
 
 @Component({
   selector: 'task-root',
@@ -17,4 +18,8 @@ export class AppComponent {
   title = 'task-app';
 
   users = DUMMY_USERS;
+
+  onSelectedUser(id: string):void {
+    console.log(id);
+  }
 }
