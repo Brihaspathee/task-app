@@ -1,4 +1,4 @@
-import {Component, computed, Input, Signal, signal} from '@angular/core';
+import {Component, computed, Input, Signal, signal, input, InputSignal} from '@angular/core';
 import {DUMMY_USERS} from "../dummy-users";
 
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
@@ -11,15 +11,20 @@ import {DUMMY_USERS} from "../dummy-users";
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({required:true}) avatar!: string;
-  @Input({required:true}) name!: string;
-  @Input({required:true}) id!: string;
-  // selectedUser = signal(DUMMY_USERS[randomIndex])
-  // imagePath: Signal<string> = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  // @Input({required:true}) avatar!: string;
+  // @Input({required:true}) name!: string;
+  // @Input({required:true}) id!: string;
 
-  get imagePath() {
-    return 'assets/users/' + this.avatar
-  }
+  avatar: InputSignal<string> = input.required<string>();
+  name: InputSignal<string> = input.required<string>();
+  id: InputSignal<string> = input.required<string>();
+
+  // selectedUser = signal(DUMMY_USERS[randomIndex])
+  imagePath: Signal<string> = computed(() => 'assets/users/' + this.avatar())
+
+  // get imagePath() {
+  //   return 'assets/users/' + this.avatar
+  // }
 
   onSelectUser(id:string){
     // console.log("Clicked Updated", id);
