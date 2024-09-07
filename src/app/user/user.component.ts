@@ -19,13 +19,14 @@ export class UserComponent {
   // @Input({required:true}) id!: string;
   // @Output() select = new EventEmitter<string>();
 
+  user: InputSignal<{ id: string; name:string; avatar: string}> = input.required<{id: string; name:string; avatar: string}>();
   avatar: InputSignal<string> = input.required<string>();
   name: InputSignal<string> = input.required<string>();
   id: InputSignal<string> = input.required<string>();
   select: OutputEmitterRef<string>= output<string>()
 
   // selectedUser = signal(DUMMY_USERS[randomIndex])
-  imagePath: Signal<string> = computed(() => 'assets/users/' + this.avatar())
+  imagePath: Signal<string> = computed(() => 'assets/users/' + this.user().avatar)
 
   // get imagePath() {
   //   return 'assets/users/' + this.avatar
