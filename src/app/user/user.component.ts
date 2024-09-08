@@ -2,9 +2,18 @@ import {
   Component, computed, Input, Signal, signal,
   input, InputSignal, Output, EventEmitter, output, OutputOptions, OutputEmitterRef
 } from '@angular/core';
-import {DUMMY_USERS} from "../dummy-users";
 
-// const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+// type USER = {
+//   id: string;
+//   name: string;
+//   avatar: string
+// }
+
+interface User {
+  id:string
+  name: string
+  avatar: string
+}
 
 @Component({
   selector: 'task-user',
@@ -19,10 +28,10 @@ export class UserComponent {
   // @Input({required:true}) id!: string;
   // @Output() select = new EventEmitter<string>();
 
-  user: InputSignal<{ id: string; name:string; avatar: string}> = input.required<{id: string; name:string; avatar: string}>();
-  avatar: InputSignal<string> = input.required<string>();
-  name: InputSignal<string> = input.required<string>();
-  id: InputSignal<string> = input.required<string>();
+  user: InputSignal<User> = input.required<User>();
+  // avatar: InputSignal<string> = input.required<string>();
+  // name: InputSignal<string> = input.required<string>();
+  // id: InputSignal<string> = input.required<string>();
   select: OutputEmitterRef<string>= output<string>()
 
   // selectedUser = signal(DUMMY_USERS[randomIndex])
