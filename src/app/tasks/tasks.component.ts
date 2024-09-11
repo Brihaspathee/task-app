@@ -1,9 +1,12 @@
 import {Component, Input, input, InputSignal} from '@angular/core';
+import {TaskComponent} from "./task/task.component";
 
 @Component({
   selector: 'task-tasks',
   standalone: true,
-  imports: [],
+  imports: [
+    TaskComponent
+  ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
