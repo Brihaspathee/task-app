@@ -2,18 +2,8 @@ import {
   Component, computed, Input, Signal, signal,
   input, InputSignal, Output, EventEmitter, output, OutputOptions, OutputEmitterRef
 } from '@angular/core';
+import {User} from "./user.model";
 
-// type USER = {
-//   id: string;
-//   name: string;
-//   avatar: string
-// }
-
-interface User {
-  id:string
-  name: string
-  avatar: string
-}
 
 @Component({
   selector: 'task-user',
@@ -29,6 +19,7 @@ export class UserComponent {
   // @Output() select = new EventEmitter<string>();
 
   user: InputSignal<User> = input.required<User>();
+  selected: InputSignal<boolean> = input.required<boolean>();
   // avatar: InputSignal<string> = input.required<string>();
   // name: InputSignal<string> = input.required<string>();
   // id: InputSignal<string> = input.required<string>();
