@@ -38,10 +38,21 @@ export class TasksComponent {
       title: 'Prepare Issue Template',
       summary: 'Prepare and describe an issue template which will help with project management',
       dueDate: '2024-06-15'
+    },
+    {
+      id: 't4',
+      userId: 'u3',
+      title: 'Prepare Issue Template task',
+      summary: 'Prepare and describe an issue template which will help with project management',
+      dueDate: '2024-06-15'
     }
   ]
 
   get selectedUserTasks():Task[] | undefined {
     return this.tasks.filter((task) => task.userId === this.userId);
+  }
+
+  onCompleteTask(id: string):void {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }

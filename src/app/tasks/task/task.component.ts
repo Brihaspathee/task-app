@@ -1,4 +1,4 @@
-import {Component, input, InputSignal} from '@angular/core';
+import {Component, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
 import { Task } from './task.model';
 
 @Component({
@@ -11,4 +11,10 @@ import { Task } from './task.model';
 
 export class TaskComponent {
   task:InputSignal<Task>= input.required<Task>();
+
+  complete: OutputEmitterRef<string>= output<string>()
+
+  onCompleteTask() {
+    this.complete.emit(this.task().id)
+  }
 }
