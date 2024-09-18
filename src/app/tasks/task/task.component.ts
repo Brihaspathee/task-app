@@ -1,10 +1,13 @@
 import {Component, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
 import { Task } from './task.model';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'task-task',
   standalone: true,
-  imports: [],
+  imports: [
+    DatePipe
+  ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })

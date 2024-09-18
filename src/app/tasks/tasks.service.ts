@@ -1,26 +1,13 @@
-import {Component, Input, input, InputSignal} from '@angular/core';
-import {TaskComponent} from "./task/task.component";
+import { Injectable } from '@angular/core';
 import {Task} from "./task/task.model";
-import {NewTaskComponent} from "./new-task/new-task.component";
 import {NewTask} from "./new-task/new-task.model";
 
-@Component({
-  selector: 'task-tasks',
-  standalone: true,
-  imports: [
-    TaskComponent,
-    NewTaskComponent
-  ],
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css'
+@Injectable({
+  providedIn: 'root'
 })
-export class TasksComponent {
+export class TasksService {
 
-  @Input({required: true}) userId !: string;
-
-  name:InputSignal<string|undefined>= input<string>();
-
-  isAddingTask: boolean = false;
+  constructor() { }
 
   tasks: Task[] = [
     {
@@ -53,30 +40,21 @@ export class TasksComponent {
     }
   ]
 
-  get selectedUserTasks():Task[] | undefined {
-    return this.tasks.filter((task) => task.userId === this.userId);
+  getUserTasks(userId: string):Task[] {
+    return this.tasks.filter((task) => task.userId === userId);
   }
 
-  onCompleteTask(id: string):void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
-
-  onAddTask():void {
-    this.isAddingTask = true;
-  }
-
-  onCancelAddTask():void {
-    this.isAddingTask = false;
-  }
-
-  onAddNewTask(task: NewTask):void {
-    this.tasks.push({
+  addTask(task:NewTask, userId: string):void {
+    this.tasks.unshift({
       id: new Date().getTime().toString(),
       title: task.title,
       summary: task.summary,
       dueDate: task.date,
-      userId: this.userId
-    });
-    this.isAddingTask = false;
+      userId: userId
+    })
+  }
+
+  removeTask(id:string):void {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }

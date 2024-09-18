@@ -1,8 +1,11 @@
+@if (isAddingTask){
+  <task-new-task (cancel)="onCancelAddTask()" (addTask)="onAddNewTask($event)"/>
+}
 <section id="tasks">
   <header>
     <h2>{{name()}}'s Tasks</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="onAddTask()">Add Task</button>
     </menu>
   </header>
   <ul>
